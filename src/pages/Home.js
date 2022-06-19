@@ -11,16 +11,6 @@ class Home extends Component {
       todos: [],
     };
   }
-  // the deleteTodo function simply deletes an existing array and then
-  // updates the state with the new list.
-  deleteTodo = (id) => {
-    const todos = this.state.todos.filter((todo) => {
-      return todo.id !== id;
-    });
-    this.setState({
-      todos: todos,
-    });
-  };
   // the addTodo function simply creates a new array that includes the user submitted todo item and then
   // updates the state with the new list.
   addTodo = (todo) => {
@@ -32,7 +22,7 @@ class Home extends Component {
     todo.id = Math.random();
     // Create a array that contains the current array and the new todo item
     // Check if it's already in the list 
-    if (this.state.todos.find(item => item.content == todo.content)) {
+    if (this.state.todos.find(item => item.content === todo.content)) {
       return
     }
     // if not, add it
@@ -40,6 +30,16 @@ class Home extends Component {
     // Update the local state with the new array.
     this.setState({
       todos: new_list,
+    });
+  };
+  // the deleteTodo function simply deletes an existing array and then
+  // updates the state with the new list.
+  deleteTodo = (id) => {
+    const todos = this.state.todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    this.setState({
+      todos: todos,
     });
   };
   render() {
